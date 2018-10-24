@@ -1,12 +1,17 @@
 package com.example.laboratorios.editablegridtest;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -28,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<Student> students;
     //https://code.tutsplus.com/es/tutorials/getting-started-with-recyclerview-and-cardview-on-android--cms-23465
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,13 +45,39 @@ public class MainActivity extends AppCompatActivity {
         b = (Button) findViewById(R.id.button);
         et = (EditText) findViewById(R.id.editText);
         rv=(RecyclerView) findViewById(R.id.recyclerView);
-        rv.setLayoutManager(new GridLayoutManager(this, 1));
+        rv.setAdapter(new adapters.CustomViewAdapter(students));
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAlertDialog1();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.menu_test, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i;
+        switch (item.getItemId()){
+            case R.id.i1:
+                i=new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.fuac.edu.co"));
+                startActivity(i);
+                break;
+            case R.id.i2:
+                i=new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com.co"));
+                startActivity(i);
+                break;
+            case R.id.i3:
+                finish();
+                break;
+        }
+        return  true;
     }
 
     private void showAlertDialog1() {

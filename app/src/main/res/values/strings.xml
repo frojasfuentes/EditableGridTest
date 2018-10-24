@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Editable Grid Test</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="name">Name</string>
     <string name="add_new_student">Add new student</string>
+    <string name="fuac">FUAC</string>
+    <string name="google">Google</string>
+    <string name="salir">Salir</string>
+    <string name="test_component">TEST COMPONENT</string>
 </resources>
